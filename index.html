@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset = "utf-8">
+    <title>Amicable Numbers</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<h1>Amicable Numbers</h1>
+
+<body>
+    <script language = "javascript" type = "text/javascript">
+    var input1;
+    var input2;
+    var numberarr = [1, 2, 3, 4, 5, 6];
+
+    function isAmic()
+    {
+        input1 = document.getElementById("input1").value;
+        input2 = document.getElementById("input2").value;
+        document.write("First no is: " + input1 + "<br>");
+        document.write("Second no is: " + input2 + "<br><br>");
+        var factarr1 = getFactors(input1);
+        document.write("Factors of " + input1 + ":<br>");
+        showFactors(factarr1);
+        var factarr2 = getFactors(input2);
+        document.write("Factors of " + input2 +":<br>");
+        showFactors(factarr2);
+        
+        var sum1 = addFactors(factarr1);
+        document.write("Sum of factors of first number: " + sum1 + "<br>");
+
+        var sum2 = addFactors(factarr2); 
+        document.write("Sum of factors of second number: " + sum2 + "<br>");
+
+        if (sum1 == input2 && sum2 == input1)
+        {
+            document.write("Numbers are amicable.<br>")
+        } else {
+            document.write("Numbers are not amicable.<br>");
+        }
+
+    }
+
+    function isFactor(no1, no2)
+    {
+
+        if (no1 % no2 == 0)
+        {
+            return true;
+        } else {
+            return false;
+        }
+        //     var no1factors = [0];
+        //     var no2factors = [0];
+        //     document.write("Numbers are factors<br>");
+        //     no1factors = getFactors(no1);
+        //     no2factors = getFactors(no2);
+
+        //     if ( addFactors(no1factors) == addFactors(no2factors))
+        //     {
+        //         document.write("Numbers are amicable.<br>");
+        //         return true;
+        //     } else {
+        //         document.write("Numbers are not amicable.<br>");
+        //         return false;
+        //     }
+        // } else {
+        //     document.write("Numbers are not factors, thus not amicable<br>");
+        //     return false;
+
+        // showFactors(numberarr);
+        // addFactors(numberarr);
+        // var test = getFactors(284);
+        // showFactors(test);
+        // addFactors(test);
+    }
+
+    function showFactors(numberarr)
+    {
+       for (i = 0; i < numberarr.length; i++)
+       {
+            document.write(numberarr[i] + "<br>");
+       }
+       document.write("<br>");
+
+    }
+
+    function addFactors(numberarr)
+    {
+        var arrsum = 0;
+        for (i = 0; i < numberarr.length; i++)
+        {
+            arrsum += numberarr[i];
+        }
+        return arrsum;
+    }
+
+    function getFactors(number)
+    {
+        var factorarr = [];
+        for (i = 1; i < number; i++)
+        {
+            if (isFactor(number, i))
+            {
+                factorarr.push(i);
+            }
+        }
+        return factorarr;
+    }
+
+    </script>
+	<form >
+            Enter first number:
+            <br>
+            <input type = "text" id = "input1">
+            <br>
+            Enter second number:
+            <br>
+            <input type = "text" id = "input2">
+            <br>
+            <input type = 'submit' onclick = 'isAmic()' value= "Check if amicable">
+    </form>
+</body>
+
+</html>
